@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IServiceScore {
-    List<Score> getAlLScore();
+    List<Score> getAllScore();
     Optional<Score> getScoreById(Long id);
     void addScore(Score score);
     List<Score> getScoreByUserId(Long Userid);
-    List<Score> getScoreByQuizId(Long quizId);
+    List<Score> getScoresByQuizId(Long quizId);
     boolean deleteById(Long id);
 }

@@ -15,7 +15,7 @@ public class ScoreRepositoryImpl implements IServiceScore {
 
 
     @Override
-    public List<Score> getAlLScore() {
+    public List<Score> getAllScore() {
         return scoreRepository.findAll();
     }
 
@@ -35,7 +35,7 @@ public class ScoreRepositoryImpl implements IServiceScore {
     }
 
     @Override
-    public List<Score> getScoreByQuizId(Long quizId) {
+    public List<Score> getScoresByQuizId(Long quizId) {
         return scoreRepository.getScoreByQuizId(quizId);
     }
 
