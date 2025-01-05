@@ -30,7 +30,7 @@ public class QuestionServiceImpl implements IServiceQuestion{
     }
 
     @Override
-    public boolean updateQuestionById(Long id) {
+    public boolean updateQuestionById(Question question, Long id) {
         Optional<Question> optional = questionRepository.findById(id);
         if(optional.isPresent()){
             Question questionToUpdate = optional.get();

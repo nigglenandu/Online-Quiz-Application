@@ -37,7 +37,7 @@ public class QuizController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    public ResponseEntity<String> deleteById(@PathVariable Long id){
         boolean isDeleted = serviceQuiz.deleteById(id);
         if(isDeleted){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
