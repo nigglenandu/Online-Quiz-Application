@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("users")
 public class UserController {
-    private final IServiceUser serviceUser;
+    public final IServiceUser serviceUser;
 
     public UserController(IServiceUser serviceUser){
         this.serviceUser = serviceUser;
