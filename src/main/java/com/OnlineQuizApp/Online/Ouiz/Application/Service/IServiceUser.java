@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IServiceUser {
-    List<User> getAllUser();
+    List<User> getAllUsers();
     Optional<User> getUserById(Long id);
     Optional<User> getUserByUserName(String username);
     void addUser(User user);
