@@ -9,7 +9,7 @@ public interface IServiceScore {
     List<Score> getAllScore();
     Optional<Score> getScoreById(Long id);
     void addScore(Score score);
-    List<Score> getScoreByUserId(Long Userid);
+    List<Score> getScoresByUserId(Long userId);
     List<Score> getScoresByQuizId(Long quizId);
     boolean deleteById(Long id);
 }

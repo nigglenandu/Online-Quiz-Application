@@ -1,9 +1,6 @@
 package com.OnlineQuizApp.Online.Ouiz.Application.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -14,6 +11,7 @@ public class Question {
     private Long id;
     private String questionText;
     private String correctAnswer;
+    @ElementCollection
     private List<String> options;
 
     public List<String> getOptions() {

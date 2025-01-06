@@ -3,6 +3,7 @@ package com.OnlineQuizApp.Online.Ouiz.Application.Service;
 import com.OnlineQuizApp.Online.Ouiz.Application.Entity.Score;
 import com.OnlineQuizApp.Online.Ouiz.Application.Repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +11,10 @@ import java.util.Optional;
 
 @Service
 public class ScoreRepositoryImpl implements IServiceScore {
-    @Autowired
-    private ScoreRepository scoreRepository;
-
+    private final ScoreRepository scoreRepository;
+    @Autowired public ScoreRepositoryImpl(@Lazy ScoreRepository scoreRepository) {
+        this.scoreRepository = scoreRepository;
+    }
 
     @Override
     public List<Score> getAllScore() {
@@ -30,8 +32,8 @@ public class ScoreRepositoryImpl implements IServiceScore {
     }
 
     @Override
-    public List<Score> getScoreByUserId(Long Userid) {
-        return scoreRepository.getScoreByUserId(Userid);
+    public List<Score> getScoresByUserId(Long userId) {
+        return scoreRepository.getScoreByUserId(userId);
     }
 
     @Override

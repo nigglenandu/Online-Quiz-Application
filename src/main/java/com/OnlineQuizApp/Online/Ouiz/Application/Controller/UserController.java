@@ -29,9 +29,9 @@ public class UserController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/name")
-    public ResponseEntity<User> getUserByName(@RequestParam String name) {
-        return serviceUser.getUserByUserName(name)
+    @GetMapping("/username")
+    public ResponseEntity<User> getUserByName(@RequestParam String username) {
+        return serviceUser.getUserByUserName(username)
                 .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
