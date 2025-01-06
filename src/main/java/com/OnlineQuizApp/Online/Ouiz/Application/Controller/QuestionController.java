@@ -38,6 +38,7 @@ public class QuestionController {
 
     @PutMapping("update/{id}")
     public ResponseEntity<Void> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
+
         serviceQuestion.updateQuestionById(question, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

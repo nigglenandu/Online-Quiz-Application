@@ -34,9 +34,9 @@ public class QuestionServiceImpl implements IServiceQuestion{
         Optional<Question> optional = questionRepository.findById(id);
         if(optional.isPresent()){
             Question questionToUpdate = optional.get();
-            questionToUpdate.setQuestionText(questionToUpdate.getQuestionText());
-            questionToUpdate.setOptions(questionToUpdate.getOptions());
-            questionToUpdate.setCorrectAnswer(questionToUpdate.getCorrectAnswer());
+            questionToUpdate.setQuestionText(question.getQuestionText());
+            questionToUpdate.setOptions(question.getOptions());
+            questionToUpdate.setCorrectAnswer(question.getCorrectAnswer());
             questionRepository.save(questionToUpdate);
             return true;
         } else {
