@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("questions")
+@RequestMapping("/questions")
 public class QuestionController {
 
-    public IServiceQuestion serviceQuestion;
+    private final IServiceQuestion serviceQuestion;
 
     public QuestionController(IServiceQuestion serviceQuestion) {
         this.serviceQuestion = serviceQuestion;
@@ -20,37 +20,32 @@ public class QuestionController {
 
     @GetMapping
     public ResponseEntity<List<Question>> getAllQuestions() {
-        return new ResponseEntity<>(serviceQuestion.getAllQuestions(), HttpStatus.OK);
+        List<Question> questions = serviceQuestion.getAllQuestions();
+        return questions.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(questions);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
         return serviceQuestion.getQuestionById(id)
-                .map(question -> new ResponseEntity<>(question, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResponseEntity<Void> createQuestion(@RequestBody Question question) {
         serviceQuestion.addQuestion(question);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Void> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
-
         serviceQuestion.updateQuestionById(question, id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
         boolean isDeleted = serviceQuestion.deleteById(id);
-        if(isDeleted){
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return isDeleted ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() : ResponseEntity.notFound().build();
     }
-
 }
